@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/category/{id}', 'ProductsController@index')->name('category');
-Route::get('/product/{id}', 'ProductsController@view')->name('product');
-Route::get('/add/{id}', 'ProductsController@add')->name('add');
-Route::get('/cart', 'CartController@index')->name('cart');
-Route::get('/cart/order', 'CartController@order')->name('cart.order');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/category/{id}', [ProductsController::class, 'index'])->name('category');
+Route::get('/product/{id}', [ProductsController::class, 'view'])->name('product');
+Route::get('/add/{id}', [ProductsController::class, 'add'])->name('add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart/order', [CartController::class, 'order'])->name('cart.order');
 
 
 
