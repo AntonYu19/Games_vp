@@ -23,15 +23,17 @@ class ProductsController extends Controller
 		
         return view('product', compact('product'));
     } 
-	
-	public function add($id)
+	//
+	public function add(Request $request)
     {
-        $product = Product::find($id);
+        $product = new Product();
 
+
+        $product->id = $request->id;
         if(!$product) {
             abort(404);
         }
-
+//
         $cart = session()->get('cart');
 		
         if(!$cart) {
